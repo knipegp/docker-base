@@ -4,7 +4,7 @@
 set -euf -o pipefail
 
 if [ "$1" == "-h" ]; then
-	echo "Usage: build_container.sh [-h] image_name dockerfile_path"
+	echo "Usage: build_container.sh [-h] image_name dockerfile_path [docker build flags]"
 	exit 0
 fi
 
@@ -23,4 +23,5 @@ dockerfile="$1"
 context="$(dirname "$dockerfile")"
 shift
 
-docker build -f "$dockerfile" "$context" -t "$image_name" --build-arg USER_ID="$(id -u)" --build-arg GROUP_ID="$(id -g)"
+docker build -f "$dockerfile" "$context" -t "$image_name" \
+    --build-arg USER_ID="$(id -u)" --build-arg GROUP_ID="$(id -g)" "$@"
