@@ -6,7 +6,7 @@ set -euf -o pipefail
 vol_path=""
 
 if [ "$1" == "-h" ]; then
-	echo "Usage: run_container.sh [-h] [--volume-path] image_name"
+	echo "Usage: run_container.sh [-h] image_name [--volume-path path]"
 	exit 0
 fi
 
