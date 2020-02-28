@@ -37,5 +37,5 @@ if [ ! -z "$vol_path" ]; then
 fi
 
 
-docker_cmd="docker run -it --rm --user=$USER_ID -w $HOME_DIR $mount_cmd $image_name /bin/bash"
+docker_cmd="docker run --net=host -it --rm --user=$USER_ID -w $HOME_DIR $mount_cmd $image_name /bin/bash"
 eval "$docker_cmd"
