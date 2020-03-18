@@ -17,6 +17,7 @@ fi
 image_name="$1"
 shift
 
+run_args=""
 while test $# -gt 0; do
 	case "$1" in
 		--volume-path)
@@ -24,6 +25,10 @@ while test $# -gt 0; do
 			vol_path=$1
 			shift
 			;;
+        *)
+            run_args="$run_args $1"
+            shift
+            ;;
 	esac
 done
 
@@ -37,5 +42,6 @@ if [ ! -z "$vol_path" ]; then
 fi
 
 
-docker_cmd="docker run --net=host -it --rm --user=$USER_ID -w $HOME_DIR $mount_cmd $image_name /bin/bash"
+docker_cmd="docker run --net=host -it --rm $run_args --user=$USER_ID -w $HOME_DIR $mount_cmd $image_name /bin/bash"
+# echo "$docker_cmd"
 eval "$docker_cmd"
