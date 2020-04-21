@@ -1,32 +1,32 @@
-FROM ubuntu:18.04
+FROM ubuntu:19.10
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends git=1:2.17.1-1ubuntu0.5 \
-    && apt-get install -y --no-install-recommends less=487-0.1 \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    less \
     # Curl
-    && apt-get install -y --no-install-recommends curl=7.58.0-2ubuntu3.8 \
-    && apt-get install -y --no-install-recommends ca-certificates=20180409 \
+    curl \
+    ca-certificates \
     # Neovim
-    && apt-get install -y --no-install-recommends neovim=0.2.2-3 \
-    && apt-get install -y --no-install-recommends python-neovim=0.2.0-1 \
-    && apt-get install -y --no-install-recommends python3-neovim=0.2.0-1 \
-    && apt-get install -y --no-install-recommends xsel=1.2.0-4 \
-    && apt-get install -y --no-install-recommends xxd=2:8.0.1453-1ubuntu1.1 \
+    neovim \
+    python-neovim \
+    python3-neovim \
+    xsel \
+    xxd \
     # for YouCompleteMe
-    && apt-get install -y --no-install-recommends build-essential=12.4ubuntu1 \
-    && apt-get install -y --no-install-recommends cmake=3.10.2-1ubuntu2.18.04.1 \
-    && apt-get install -y --no-install-recommends python3-dev=3.6.7-1~18.04 \
-    && rm -rf /var/lib/apt/lists/* 
+    build-essential \
+    cmake \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN curl -LO \
-    https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_11.0.2_amd64.deb && \
-    dpkg -i ripgrep_11.0.2_amd64.deb && \
-    rm ripgrep_11.0.2_amd64.deb
+    https://github.com/BurntSushi/ripgrep/releases/download/12.0.1/ripgrep_12.0.1_amd64.deb && \
+    dpkg -i ripgrep_12.0.1_amd64.deb && \
+    rm ripgrep_12.0.1_amd64.deb
 
 RUN curl -LO \
-    https://github.com/sharkdp/bat/releases/download/v0.12.1/bat_0.12.1_amd64.deb && \
-    dpkg -i bat_0.12.1_amd64.deb && \
-    rm bat_0.12.1_amd64.deb
+    https://github.com/sharkdp/bat/releases/download/v0.13.0/bat_0.13.0_amd64.deb && \
+    dpkg -i bat_0.13.0_amd64.deb && \
+    rm bat_0.13.0_amd64.deb
 
 # Thanks for the help Nico
 ARG USER_ID
